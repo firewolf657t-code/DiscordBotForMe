@@ -1,0 +1,37 @@
+import discord
+import random
+
+# Замените на свой токен бота
+TOKEN = 'MTQ1MTYyMjMwMTI3MDU0MDQ4MA.GbK_84.V2UCi6_I334vj3-GKBP8dSW9AhyITEfBXB8YHk'
+
+# ID канала, где бот будет приветствовать участников
+WELCOME_CHANNEL_ID = 1447963352255959041  # замените на ID вашего канала
+
+# Список интересных фактов
+FUN_FACTS = [
+    "Моллюски могут менять пол в течение жизни.",
+    "Самая длинная война в истории длилась 116 лет.",
+    "Альтруизм может активировать центры удовольствия в мозге так же, как и употребление наркотиков.",
+    "Самая большая пирамида построена из блоков и находится в Чили.",
+    "На Марсе есть вулкан, в три раза выше Эвереста."
+]
+
+intents = discord.Intents.default()
+intents.members = True  # необходимо для отслеживания новых участников
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'Бот успешно запущен как {client.user}')
+
+@client.event
+async def on_member_join(member):
+    channel = client.get_channel(WELCOME_CHANNEL_ID)
+    if channel:
+        random_fact = random.choice(FUN_FACTS)
+        message = f"Привет, {member.mention}! Интересный факт: {random_fact}"
+        await channel.send(message)
+
+# Запуск бота
+client.run(TOKEN)
