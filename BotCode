@@ -2,7 +2,7 @@ import discord
 import random
 
 # Замените на свой токен бота
-TOKEN = ''
+TOKEN = '${{ secrets.TOKENDISCORD }}'
 
 # ID канала, где бот будет приветствовать участников
 WELCOME_CHANNEL_ID = 1447963352255959041  # замените на ID вашего канала
