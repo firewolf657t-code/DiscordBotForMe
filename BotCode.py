@@ -20,7 +20,7 @@ facts = [
 
 # Создаем клиент
 intents = discord.Intents.default()
-intents.members = True  # Нужно для отслеживания прихода новых пользователей
+intents.members = True  # Необходимо для отслеживания новых участников
 client = discord.Client(intents=intents)
 
 @client.event
@@ -39,5 +39,5 @@ async def on_member_join(member):
         )
         await channel.send(message)
 
-# Запускаем бота
+# Запуск бота
 client.run(TOKEN)
